@@ -23,55 +23,47 @@ to get these projects running on your machine.
 
 ### Dataset
 
-Describe the dataset used by your Kafka producer.
-
-Include:
-
-- the name of the dataset file
-- what kind of records it contains
-- which fields are included in each record
-- whether you used the original sales dataset or modified it
+- The dataset file is `data/sales.csv`.
+- It contains sale records for orders, customers, regions, products, and
+  payment metadata.
+- Each record includes fields such as `order_id`, `datetime`, `region_id`,
+  `currency_code`, `product_id`, `unit_price`, `quantity`, `is_online`,
+  `customer_id`, and `payment_method`.
+- The original sales dataset was used, not a modified version.
 
 ### Kafka Messages
 
-Describe the messages sent through Kafka.
-
-Include:
-
-- what your producer sends
-- which Kafka topic you used
-- what message key you used, if any
-- whether you changed the message fields
+- The producer sends full sale records as Kafka messages.
+- The messages are published to the configured sales topic.
+- No custom message key is introduced in this example.
+- The message fields remain the same as the source sales records.
 
 ### Consumer Processing
 
-Describe what your consumer receives and does with each message.
-
-Include:
-
-- what your consumer receives from Kafka
-- how many messages it consumes
-- what it logs or prints
-- if it writes records to a CSV file
-- if it processes or filters selected fields (be specific)
+- The consumer receives records from Kafka and validates required fields.
+- It consumes up to the configured maximum messages and stops on timeout.
+- It logs processing details, including subtotal, tax, total, and running
+  statistics.
+- It writes accepted records to `data/output/consumed_sales.csv`.
 
 ### Experiments
 
-Describe the small technical changes you made.
-
-Include at least one Phase 4 change and one Phase 5 application.
+- Phase 4: In .env, PRODUCER_MESSAGE_COUNT was increased from 3 to 25
+  - Required change to have sufficient data for Phase 5 change
+- Phase 5: Applied eligible discount code to sales
 
 ### Results
 
-Describe what happened when you ran the producer and consumer.
+- Producer and Consumer ran successfully after Phase 4
+- After Phase 5 change, The producer and consumer reran successfully and
+  the consumed_sales.csv was updated with changes.
+- If sale was made by a new customer, the WELCOME110 discount code was
+  added in a new field called 'eligible_discount_code'
+- Updated subtotal was calculated in 'subtotal_with_discount'
 
 ### Interpretation
 
-Explain what the Kafka streaming workflow showed you.
-
-Include:
-
-- what changed from the original example
-- what you learned from watching messages move through Kafka
-- what the stream could tell a business or organization
-- what business intelligence was gained from the consumed messages
+- Increase in messages (sale records) allowed for the consumer to process
+  more information, allowing more accurate insights.
+- While the sales are already completed, the calculated discounts,
+  whether used or not, provide insight on the success of the promotion.

@@ -230,7 +230,7 @@ Clear the terminal, then start the consumer.
 
 ```shell
 clear
-uv run python -m streaming.kafka_consumer_case
+uv run python -m streaming.kafka_consumer_shelhamer
 ```
 
 To start fresh, see

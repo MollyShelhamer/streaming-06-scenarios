@@ -48,7 +48,7 @@ to get these projects running on your machine.
 
 ### Experiments
 
-- Phase 4: In .env, PRODUCER_MESSAGE_COUNT was increased from 3 to 25
+- Phase 4: In .env, `PRODUCER_MESSAGE_COUNT` was increased from 3 to 25
   - Required change to have sufficient data for Phase 5 change
 - Phase 5: Applied eligible discount code to sales
 
@@ -58,8 +58,8 @@ to get these projects running on your machine.
 - After Phase 5 change, The producer and consumer reran successfully and
   the consumed_sales.csv was updated with changes.
 - If sale was made by a new customer, the WELCOME110 discount code was
-  added in a new field called 'eligible_discount_code'
-- Updated subtotal was calculated in 'subtotal_with_discount'
+  added in a new field called `eligible_discount_code`
+- Updated subtotal was calculated in `subtotal_with_discount`
 
 ### Interpretation
 

@@ -245,11 +245,24 @@ def load_reference_data() -> dict[str, float]:
     return region_lookup
 
 
+def load_valid_discount_codes() -> set[str]:
+    """Load discount codes so new customers can get welcome10."""
+    LOG.info("Loading discount codes...")
+    discount_lookup = read_csv_as_lookup(
+        DISCOUNT_CODES_CSV,
+        key_field="discount_code",
+        value_field="discount_pct",
+    )
+    LOG.info(f"Found {len(discount_lookup)} discount codes.")
+    return set(discount_lookup)
+
+
 def process_message(
     row: dict[str, Any],
     *,
     region_lookup: dict[str, float],
     stats: RunningStats,
+    valid_discount_codes: set[str],
     figure: Any,
     axis: Any,
     x_values: list[int],
@@ -268,6 +281,7 @@ def process_message(
         row: A raw consumed Kafka message row.
         region_lookup: Tax rates by region_id.
         stats: Running statistics accumulator.
+        valid_discount_codes: Set of valid discount codes loaded from CSV.
         figure: Matplotlib figure.
         axis: Matplotlib axis.
         x_values: List of x-axis values already shown.
@@ -292,6 +306,13 @@ def process_message(
 
     stats.update(enriched["total"])
 
+    is_new_customer = str(row.get("is_new_customer", "")).strip().lower() == "true"
+    enriched["applied_discount_code"] = (
+        "welcome10"
+        if is_new_customer and "welcome10" in valid_discount_codes
+        else enriched.get("discount_code", "")
+    )
+
     update_live_chart(
         figure=figure,
         axis=axis,
@@ -308,6 +329,7 @@ def consume_messages(
     *,
     region_lookup: dict[str, float],
     stats: RunningStats,
+    valid_discount_codes: set[str],
     figure: Any,
     axis: Any,
     x_values: list[int],
@@ -324,6 +346,7 @@ def consume_messages(
         consumer: An open Kafka consumer subscribed to the topic.
         region_lookup: Tax rates by region_id.
         stats: Running statistics accumulator.
+        valid_discount_codes: Set of valid discount codes loaded from CSV.
         figure: Matplotlib figure.
         axis: Matplotlib axis.
         x_values: List of x-axis values already shown.
@@ -356,6 +379,7 @@ def consume_messages(
             row,
             region_lookup=region_lookup,
             stats=stats,
+            valid_discount_codes=valid_discount_codes,
             figure=figure,
             axis=axis,
             x_values=x_values,
@@ -377,8 +401,11 @@ def consume_messages(
 
         append_csv_row(
             path=OUTPUT_CSV,
-            row={field: enriched.get(field, "") for field in CONSUMED_FIELDNAMES},
-            fieldnames=CONSUMED_FIELDNAMES,
+            row={
+                **{field: enriched.get(field, "") for field in CONSUMED_FIELDNAMES},
+                "applied_discount_code": enriched.get("applied_discount_code", ""),
+            },
+            fieldnames=[*CONSUMED_FIELDNAMES, "applied_discount_code"],
         )
 
         consumed_count += 1
@@ -466,6 +493,7 @@ def main() -> None:
 
     figure, axis, x_values, y_values, stats = initialize_output()
     region_lookup = load_reference_data()
+    valid_discount_codes = load_valid_discount_codes()
 
     consumed_count = 0
     skipped_count = 0
@@ -476,6 +504,7 @@ def main() -> None:
                 consumer,
                 region_lookup=region_lookup,
                 stats=stats,
+                valid_discount_codes=valid_discount_codes,
                 figure=figure,
                 axis=axis,
                 x_values=x_values,

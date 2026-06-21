@@ -315,3 +315,540 @@
 2026-06-17 22:35:43 | INFO | C06 | ========================
 2026-06-17 22:35:43 | INFO | C06 | Consumer executed successfully!
 2026-06-17 22:35:43 | INFO | C06 | ========================
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_BOOTSTRAP_SERVERS           = localhost:9092
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_BROKER_ADDRESS_FAMILY       = v6
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_TOPIC                       = streaming-06-scenarios-case
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_CLEAR_TOPIC_ON_START        = true
+2026-06-21 08:56:38 | DEBUG | P06 | PRODUCER_MESSAGE_COUNT            = 25
+2026-06-21 08:56:38 | DEBUG | P06 | PRODUCER_MESSAGE_INTERVAL_SECONDS = 2
+2026-06-21 08:56:38 | DEBUG | P06 | PRODUCER_MAX_MESSAGES             = 50
+2026-06-21 08:56:38 | DEBUG | P06 | PRODUCER_POLL_INTERVAL_SECONDS    = 15
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_GROUP_ID                    = streaming-consumer-group-A
+2026-06-21 08:56:38 | DEBUG | P06 | KAFKA_AUTO_OFFSET_RESET           = earliest
+2026-06-21 08:56:38 | DEBUG | P06 | CONSUMER_TIMEOUT_SECONDS          = 10
+2026-06-21 08:56:38 | DEBUG | P06 | CONSUMER_MAX_MESSAGES             = 1000
+2026-06-21 08:56:38 | INFO | P06 | === RUN START ===
+2026-06-21 08:56:38 | INFO | P06 | project=P06
+2026-06-21 08:56:38 | INFO | P06 | repo_dir=streaming-06-scenarios
+2026-06-21 08:56:38 | INFO | P06 | python=3.14.3
+2026-06-21 08:56:38 | INFO | P06 | os=Windows 10
+2026-06-21 08:56:38 | INFO | P06 | shell=powershell
+2026-06-21 08:56:38 | INFO | P06 | cwd=.
+2026-06-21 08:56:38 | INFO | P06 | github_actions=False
+2026-06-21 08:56:38 | INFO | P06 | ========================
+2026-06-21 08:56:38 | INFO | P06 | START producer main()
+2026-06-21 08:56:38 | INFO | P06 | ========================
+2026-06-21 08:56:38 | INFO | P06 | ROOT_DIR = .
+2026-06-21 08:56:38 | INFO | P06 | DATA_DIR = data
+2026-06-21 08:56:38 | INFO | P06 | SALES_CSV = data\sales.csv
+2026-06-21 08:56:38 | INFO | P06 | REGIONS_CSV = data\regions.csv
+2026-06-21 08:56:38 | INFO | P06 | PRODUCTS_CSV = data\products.csv
+2026-06-21 08:56:38 | INFO | P06 | REJECTED_SALES_CSV = data\output\producer_rejected_sales.csv
+2026-06-21 08:56:38 | INFO | P06 | ========================
+2026-06-21 08:56:38 | INFO | P06 | SECTION A. Acquire
+2026-06-21 08:56:38 | INFO | P06 | ========================
+2026-06-21 08:56:38 | INFO | P06 | Loading settings from .env...
+2026-06-21 08:56:38 | INFO | P06 | KAFKA_BOOTSTRAP_SERVERS           = localhost:9092
+2026-06-21 08:56:38 | INFO | P06 | KAFKA_TOPIC                       = streaming-06-scenarios-case
+2026-06-21 08:56:38 | INFO | P06 | PRODUCER_MESSAGE_COUNT            = 25
+2026-06-21 08:56:38 | INFO | P06 | PRODUCER_MESSAGE_INTERVAL_SECONDS = 2.0
+2026-06-21 08:56:38 | INFO | P06 | KAFKA_CLEAR_TOPIC_ON_START        = True
+2026-06-21 08:56:38 | INFO | P06 | Verifying Kafka connection...
+2026-06-21 08:56:38 | INFO | P06 | Kafka port is reachable.
+2026-06-21 08:56:42 | INFO | P06 | Loading validation reference data...
+2026-06-21 08:56:42 | INFO | P06 | Found 6 valid regions, 6 valid products.
+2026-06-21 08:56:42 | INFO | P06 | ========================
+2026-06-21 08:56:42 | INFO | P06 | SECTION P. Produce Messages
+2026-06-21 08:56:42 | INFO | P06 | ========================
+2026-06-21 08:56:42 | INFO | P06 | Initializing output...
+2026-06-21 08:56:42 | INFO | P06 | Output directory ready: output
+2026-06-21 08:56:42 | INFO | P06 | Sending messages...
+2026-06-21 08:56:42 | INFO | P06 | Sending up to 25 message(s) to topic 'streaming-06-scenarios-case'.
+2026-06-21 08:56:42 | INFO | P06 | Watch each sale arrive. Press CTRL+C to stop early.
+
+2026-06-21 08:56:42 | INFO | P06 | {
+  order_id: e7324981-a9f0-419f-b708-d0a333451fff
+  datetime: 2026-05-04T08:11:00Z
+  region_id: US-TX
+  currency_code: USD
+  product_id: PY-STREAM-005
+  unit_price: 59.99
+  quantity: 3
+  is_online: true
+  customer_id: CUST-4150
+  is_new_customer: false
+  device_type: tablet
+  payment_method: paypal
+  referral_source: paid_search
+  discount_code: 
+  customer_note: Gift for my team
+}
+2026-06-21 08:56:42 | INFO | P06 |   Sending message with key=US-TX
+2026-06-21 08:56:42 | INFO | P06 |   MESSAGE SENT  sent=1
+2026-06-21 08:56:44 | INFO | P06 | {
+  order_id: d61943e0-f543-4b5f-9c9a-18605ea4cfe5
+  datetime: 2026-05-04T08:23:00Z
+  region_id: US-TX
+  currency_code: USD
+  product_id: PY-DATA-002
+  unit_price: 49.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-1106
+  is_new_customer: false
+  device_type: mobile
+  payment_method: paypal
+  referral_source: paid_search
+  discount_code: 
+  customer_note: Gift for my team
+}
+2026-06-21 08:56:44 | INFO | P06 |   Sending message with key=US-TX
+2026-06-21 08:56:44 | INFO | P06 |   MESSAGE SENT  sent=2
+2026-06-21 08:56:46 | INFO | P06 | {
+  order_id: 14da1915-8e74-47be-9e10-f7275d31af46
+  datetime: 2026-05-04T08:28:00Z
+  region_id: CA-QC
+  currency_code: CAD
+  product_id: PY-NLP-006
+  unit_price: 54.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-2133
+  is_new_customer: false
+  device_type: desktop
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: Learning at my own pace
+}
+2026-06-21 08:56:46 | INFO | P06 |   Sending message with key=CA-QC
+2026-06-21 08:56:47 | INFO | P06 |   MESSAGE SENT  sent=3
+2026-06-21 08:56:49 | INFO | P06 | {
+  order_id: d77ed935-9b28-431d-bc25-0a3fd98f4154
+  datetime: 2026-05-04T08:40:00Z
+  region_id: US-CA
+  currency_code: USD
+  product_id: PY-STREAM-005
+  unit_price: 59.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-5333
+  is_new_customer: false
+  device_type: mobile
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: Highly recommend
+}
+2026-06-21 08:56:49 | INFO | P06 |   Sending message with key=US-CA
+2026-06-21 08:56:49 | INFO | P06 |   MESSAGE SENT  sent=4
+2026-06-21 08:56:51 | INFO | P06 | {
+  order_id: 24b91995-25f8-4ad7-8fa6-2e4c15750e5e
+  datetime: 2026-05-04T08:41:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-VIZ-003
+  unit_price: 39.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-8573
+  is_new_customer: false
+  device_type: mobile
+  payment_method: apple_pay
+  referral_source: paid_search
+  discount_code: 
+  customer_note: Learning at my own pace
+}
+2026-06-21 08:56:51 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:56:51 | INFO | P06 |   MESSAGE SENT  sent=5
+2026-06-21 08:56:53 | INFO | P06 | {
+  order_id: 1ec0fc8b-998c-4f43-8a66-19e1fa7d5fa8
+  datetime: 2026-05-04T08:54:00Z
+  region_id: CA-ON
+  currency_code: CAD
+  product_id: PY-SQL-004
+  unit_price: 44.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-8062
+  is_new_customer: false
+  device_type: tablet
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:56:53 | INFO | P06 |   Sending message with key=CA-ON
+2026-06-21 08:56:53 | INFO | P06 |   MESSAGE SENT  sent=6
+2026-06-21 08:56:55 | INFO | P06 | {
+  order_id: 392dd49b-b385-499c-9b4a-a38387fa39ae
+  datetime: 2026-05-04T09:07:00Z
+  region_id: CA-ON
+  currency_code: CAD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: false
+  customer_id: CUST-9348
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: paid_search
+  discount_code: 
+  customer_note: For my study group
+}
+2026-06-21 08:56:55 | INFO | P06 |   Sending message with key=CA-ON
+2026-06-21 08:56:55 | INFO | P06 |   MESSAGE SENT  sent=7
+2026-06-21 08:56:57 | INFO | P06 | {
+  order_id: 02782ab7-dd7d-4ebe-8abc-ef81cdc4193b
+  datetime: 2026-05-04T09:15:00Z
+  region_id: US-CA
+  currency_code: USD
+  product_id: PY-VIZ-003
+  unit_price: 39.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-5889
+  is_new_customer: false
+  device_type: tablet
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:56:57 | INFO | P06 |   Sending message with key=US-CA
+2026-06-21 08:56:57 | INFO | P06 |   MESSAGE SENT  sent=8
+2026-06-21 08:56:59 | INFO | P06 | {
+  order_id: 67bd3492-cc96-429a-9a91-1b4d2132d261
+  datetime: 2026-05-04T09:19:00Z
+  region_id: CA-ON
+  currency_code: CAD
+  product_id: PY-VIZ-003
+  unit_price: 39.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-4770
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: paid_search
+  discount_code: 
+  customer_note: Excellent content
+}
+2026-06-21 08:56:59 | INFO | P06 |   Sending message with key=CA-ON
+2026-06-21 08:56:59 | INFO | P06 |   MESSAGE SENT  sent=9
+2026-06-21 08:57:01 | INFO | P06 | {
+  order_id: 0a021628-6937-4876-8875-b00c07a39e0f
+  datetime: 2026-05-04T09:37:00Z
+  region_id: MX-CMX
+  currency_code: MXN
+  product_id: PY-DATA-002
+  unit_price: 49.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-6168
+  is_new_customer: false
+  device_type: desktop
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:57:01 | INFO | P06 |   Sending message with key=MX-CMX
+2026-06-21 08:57:01 | INFO | P06 |   MESSAGE SENT  sent=10
+2026-06-21 08:57:03 | INFO | P06 | {
+  order_id: b05fc600-a5fc-4826-934c-cc1f188b0715
+  datetime: 2026-05-04T09:42:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-DATA-002
+  unit_price: 49.99
+  quantity: 3
+  is_online: true
+  customer_id: CUST-3340
+  is_new_customer: false
+  device_type: tablet
+  payment_method: credit_card
+  referral_source: organic
+  discount_code: 
+  customer_note: Recommended by a colleague
+}
+2026-06-21 08:57:03 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:03 | INFO | P06 |   MESSAGE SENT  sent=11
+2026-06-21 08:57:05 | INFO | P06 | {
+  order_id: 03d437fb-6966-47ad-a67a-728630c8b3f8
+  datetime: 2026-05-04T10:06:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-8668
+  is_new_customer: false
+  device_type: mobile
+  payment_method: apple_pay
+  referral_source: email
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:57:05 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:05 | INFO | P06 |   MESSAGE SENT  sent=12
+2026-06-21 08:57:07 | INFO | P06 | {
+  order_id: 6914aea4-448f-4dc1-b68f-0fe4a2c06188
+  datetime: 2026-05-04T10:15:00Z
+  region_id: US-TX
+  currency_code: USD
+  product_id: PY-DATA-002
+  unit_price: 49.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-2827
+  is_new_customer: false
+  device_type: tablet
+  payment_method: credit_card
+  referral_source: organic
+  discount_code: 
+  customer_note: Learning at my own pace
+}
+2026-06-21 08:57:07 | INFO | P06 |   Sending message with key=US-TX
+2026-06-21 08:57:07 | INFO | P06 |   MESSAGE SENT  sent=13
+2026-06-21 08:57:09 | INFO | P06 | {
+  order_id: e1adb233-3aa8-4d60-9684-1ddf52e9d656
+  datetime: 2026-05-04T10:16:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-STREAM-005
+  unit_price: 59.99
+  quantity: 5
+  is_online: false
+  customer_id: CUST-4295
+  is_new_customer: false
+  device_type: desktop
+  payment_method: paypal
+  referral_source: organic
+  discount_code: 
+  customer_note: For my study group
+}
+2026-06-21 08:57:09 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:09 | INFO | P06 |   MESSAGE SENT  sent=14
+2026-06-21 08:57:11 | INFO | P06 | {
+  order_id: 80e9a9ea-9add-4d51-981a-d26aaacd4dc9
+  datetime: 2026-05-04T10:30:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-DATA-002
+  unit_price: 49.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-8953
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: social
+  discount_code: 
+  customer_note: For my study group
+}
+2026-06-21 08:57:11 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:11 | INFO | P06 |   MESSAGE SENT  sent=15
+2026-06-21 08:57:13 | INFO | P06 | {
+  order_id: 68920c43-44f0-4e51-bd21-7904c9427810
+  datetime: 2026-05-04T10:43:00Z
+  region_id: CA-ON
+  currency_code: CAD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-1488
+  is_new_customer: true
+  device_type: mobile
+  payment_method: apple_pay
+  referral_source: organic
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:57:13 | INFO | P06 |   Sending message with key=CA-ON
+2026-06-21 08:57:13 | INFO | P06 |   MESSAGE SENT  sent=16
+2026-06-21 08:57:15 | INFO | P06 | {
+  order_id: d22acb5c-8fa2-437a-be68-16a3407c5919
+  datetime: 2026-05-04T10:43:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-SQL-004
+  unit_price: 44.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-1319
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: social
+  discount_code: 
+  customer_note: Recommended by a colleague
+}
+2026-06-21 08:57:15 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:15 | INFO | P06 |   MESSAGE SENT  sent=17
+2026-06-21 08:57:17 | INFO | P06 | {
+  order_id: 89715d88-8d25-4fee-9179-438fe49ebd60
+  datetime: 2026-05-04T11:00:00Z
+  region_id: US-TX
+  currency_code: USD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-6977
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: email
+  discount_code: 
+  customer_note: For my study group
+}
+2026-06-21 08:57:17 | INFO | P06 |   Sending message with key=US-TX
+2026-06-21 08:57:17 | INFO | P06 |   MESSAGE SENT  sent=18
+2026-06-21 08:57:19 | INFO | P06 | {
+  order_id: 733e6b9b-c9e7-49ef-82d8-b976d0df90cc
+  datetime: 2026-05-04T11:06:00Z
+  region_id: MX-CMX
+  currency_code: MXN
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-9099
+  is_new_customer: false
+  device_type: desktop
+  payment_method: paypal
+  referral_source: paid_search
+  discount_code: 
+  customer_note: Learning at my own pace
+}
+2026-06-21 08:57:19 | INFO | P06 |   Sending message with key=MX-CMX
+2026-06-21 08:57:19 | INFO | P06 |   MESSAGE SENT  sent=19
+2026-06-21 08:57:21 | INFO | P06 | {
+  order_id: 267b5686-afa9-4ce6-bf68-4b861afa6a29
+  datetime: 2026-05-04T11:10:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-NLP-006
+  unit_price: 54.99
+  quantity: 5
+  is_online: true
+  customer_id: CUST-4878
+  is_new_customer: true
+  device_type: mobile
+  payment_method: apple_pay
+  referral_source: email
+  discount_code: 
+  customer_note: Learning at my own pace
+}
+2026-06-21 08:57:21 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:21 | INFO | P06 |   MESSAGE SENT  sent=20
+2026-06-21 08:57:23 | INFO | P06 | {
+  order_id: d6710a67-a351-4185-8d11-3b4e71407f5b
+  datetime: 2026-05-04T11:12:00Z
+  region_id: US-TX
+  currency_code: USD
+  product_id: PY-STREAM-005
+  unit_price: 59.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-7570
+  is_new_customer: true
+  device_type: mobile
+  payment_method: credit_card
+  referral_source: email
+  discount_code: 
+  customer_note: Excellent content
+}
+2026-06-21 08:57:23 | INFO | P06 |   Sending message with key=US-TX
+2026-06-21 08:57:23 | INFO | P06 |   MESSAGE SENT  sent=21
+2026-06-21 08:57:25 | INFO | P06 | {
+  order_id: cbe8f6e2-a71e-4d62-9004-4dbbf6eb5cfe
+  datetime: 2026-05-04T11:15:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 5
+  is_online: false
+  customer_id: CUST-8973
+  is_new_customer: false
+  device_type: desktop
+  payment_method: credit_card
+  referral_source: email
+  discount_code: 
+  customer_note: Expected more content
+}
+2026-06-21 08:57:25 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:25 | INFO | P06 |   MESSAGE SENT  sent=22
+2026-06-21 08:57:27 | INFO | P06 | {
+  order_id: 09bc34b3-c566-400b-bc7b-c114a4a63983
+  datetime: 2026-05-04T11:23:00Z
+  region_id: CA-ON
+  currency_code: CAD
+  product_id: PY-SQL-004
+  unit_price: 44.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-1158
+  is_new_customer: false
+  device_type: mobile
+  payment_method: credit_card
+  referral_source: organic
+  discount_code: 
+  customer_note: Love the examples
+}
+2026-06-21 08:57:27 | INFO | P06 |   Sending message with key=CA-ON
+2026-06-21 08:57:28 | INFO | P06 |   MESSAGE SENT  sent=23
+2026-06-21 08:57:30 | INFO | P06 | {
+  order_id: 891a7917-4541-457a-b0d5-45a3cd33a260
+  datetime: 2026-05-04T11:27:00Z
+  region_id: US-MO
+  currency_code: USD
+  product_id: PY-STREAM-005
+  unit_price: 59.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-1832
+  is_new_customer: false
+  device_type: mobile
+  payment_method: apple_pay
+  referral_source: organic
+  discount_code: 
+  customer_note: 
+}
+2026-06-21 08:57:30 | INFO | P06 |   Sending message with key=US-MO
+2026-06-21 08:57:30 | INFO | P06 |   MESSAGE SENT  sent=24
+2026-06-21 08:57:32 | INFO | P06 | {
+  order_id: 5c877bff-f1b6-467b-abc4-23b946a24014
+  datetime: 2026-05-04T11:28:00Z
+  region_id: CA-QC
+  currency_code: CAD
+  product_id: PY-INTRO-001
+  unit_price: 29.99
+  quantity: 1
+  is_online: true
+  customer_id: CUST-6974
+  is_new_customer: false
+  device_type: tablet
+  payment_method: paypal
+  referral_source: email
+  discount_code: 
+  customer_note: For my study group
+}
+2026-06-21 08:57:32 | INFO | P06 |   Sending message with key=CA-QC
+2026-06-21 08:57:32 | INFO | P06 |   MESSAGE SENT  sent=25
+2026-06-21 08:57:34 | INFO | P06 | Checking for rejected records...
+2026-06-21 08:57:34 | INFO | P06 |   No records rejected.
+2026-06-21 08:57:34 | INFO | P06 | ========================
+2026-06-21 08:57:34 | INFO | P06 | SECTION E. Exit
+2026-06-21 08:57:34 | INFO | P06 | ========================
+2026-06-21 08:57:34 | INFO | P06 | Summary:
+2026-06-21 08:57:34 | INFO | P06 | Sent 25 message(s) to topic 'streaming-06-scenarios-case'.
+2026-06-21 08:57:34 | INFO | P06 | Rejected 0 message(s).
+2026-06-21 08:57:34 | INFO | P06 | ========================
+2026-06-21 08:57:34 | INFO | P06 | Producer executed successfully!
+2026-06-21 08:57:34 | INFO | P06 | ========================

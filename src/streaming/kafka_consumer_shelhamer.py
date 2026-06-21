@@ -245,7 +245,7 @@ def load_reference_data() -> dict[str, float]:
     return region_lookup
 
 
-def load_valid_discount_codes() -> set[str]:
+def load_valid_discount_codes() -> dict[str, str]:
     """Load discount codes so new customers can get welcome10."""
     LOG.info("Loading discount codes...")
     discount_lookup = read_csv_as_lookup(
@@ -254,7 +254,7 @@ def load_valid_discount_codes() -> set[str]:
         value_field="discount_pct",
     )
     LOG.info(f"Found {len(discount_lookup)} discount codes.")
-    return set(discount_lookup)
+    return {code.lower(): code for code in discount_lookup}
 
 
 def process_message(
@@ -308,7 +308,7 @@ def process_message(
 
     is_new_customer = str(row.get("is_new_customer", "")).strip().lower() == "true"
     enriched["applied_discount_code"] = (
-        "welcome10"
+        valid_discount_codes["welcome10"]
         if is_new_customer and "welcome10" in valid_discount_codes
         else enriched.get("discount_code", "")
     )

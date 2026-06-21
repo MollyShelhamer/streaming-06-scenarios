@@ -262,7 +262,7 @@ def process_message(
     *,
     region_lookup: dict[str, float],
     stats: RunningStats,
-    valid_discount_codes: set[str],
+    valid_discount_codes: dict[str, str],
     figure: Any,
     axis: Any,
     x_values: list[int],
@@ -281,7 +281,7 @@ def process_message(
         row: A raw consumed Kafka message row.
         region_lookup: Tax rates by region_id.
         stats: Running statistics accumulator.
-        valid_discount_codes: Set of valid discount codes loaded from CSV.
+        valid_discount_codes: Dict mapping lowercase code to actual CSV code string.
         figure: Matplotlib figure.
         axis: Matplotlib axis.
         x_values: List of x-axis values already shown.
@@ -329,7 +329,7 @@ def consume_messages(
     *,
     region_lookup: dict[str, float],
     stats: RunningStats,
-    valid_discount_codes: set[str],
+    valid_discount_codes: dict[str, str],
     figure: Any,
     axis: Any,
     x_values: list[int],
@@ -346,7 +346,7 @@ def consume_messages(
         consumer: An open Kafka consumer subscribed to the topic.
         region_lookup: Tax rates by region_id.
         stats: Running statistics accumulator.
-        valid_discount_codes: Set of valid discount codes loaded from CSV.
+        valid_discount_codes: Dict mapping lowercase code to actual CSV code string.
         figure: Matplotlib figure.
         axis: Matplotlib axis.
         x_values: List of x-axis values already shown.
